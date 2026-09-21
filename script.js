@@ -46,7 +46,11 @@ function saveProfile() {
 
 // PROFILE PHOTO
 
-document.getElementById("photoInput").addEventListener("change", function () {
+
+const photoInput = document.getElementById("photoInput");
+
+if (photoInput) {
+  photoInput.addEventListener("change", function () {
 
     const file = this.files[0];
 
@@ -56,13 +60,17 @@ document.getElementById("photoInput").addEventListener("change", function () {
 
     reader.onload = function () {
 
-        document.getElementById("profilePhoto").src = reader.result;
+      document.getElementById("profilePhoto").src = reader.result;
 
-        localStorage.setItem("profilePhoto", reader.result);
+      localStorage.setItem("profilePhoto", reader.result);
+
     };
 
     reader.readAsDataURL(file);
-});
+
+  });
+}
+
 
 
 // LOAD SAVED PROFILE
