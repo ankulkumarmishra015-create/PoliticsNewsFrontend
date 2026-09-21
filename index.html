@@ -3,67 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Profile</title>
-
+    <title>Politics News</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
-
-    <div class="profile-card">
-
-        <img id="profilePhoto"
-             src="https://via.placeholder.com/150"
-             class="profile-photo">
-
-        <h1 id="showName">Your Name</h1>
-
-        <p id="showBio">Your Bio</p>
-
-        <div class="info">
-            <p>📍 <b>Address:</b> <span id="showAddress">Your Address</span></p>
-            <p>📱 <b>Phone:</b> <span id="showPhone">Your Phone</span></p>
-            <p>📧 <b>Email:</b> <span id="showEmail">Your Email</span></p>
+<header class="topbar">
+    <div class="brand">
+        <div class="logo">📰</div>
+        <div>
+            <h1>Politics <span>News</span></h1>
+            <p>Real News • Real People • Real India</p>
         </div>
-
-        <button onclick="openEditor()">✏️ Edit Profile</button>
-
     </div>
 
+    <div class="top-icons">
+        <button>⌕</button>
+        <button>♧</button>
+    </div>
+</header>
 
-    <!-- EDIT PROFILE -->
+<!-- Stories -->
+<div class="stories">
 
-    <div class="editor" id="editor">
+    <div class="story">
+        <div class="story-circle add">+</div>
+        <span>Your Story</span>
+    </div>
 
-        <h2>Edit Your Profile</h2>
+    <div class="story">
+        <div class="story-circle">🇮🇳</div>
+        <span>India</span>
+    </div>
 
-        <label>Profile Photo</label>
-        <input type="file" id="photoInput" accept="image/*">
+    <div class="story">
+        <div class="story-circle">🏛️</div>
+        <span>Parliament</span>
+    </div>
 
-        <label>Name</label>
-        <input type="text" id="nameInput" placeholder="Enter your name">
+    <div class="story">
+        <div class="story-circle">🔴</div>
+        <span>Live</span>
+    </div>
 
-        <label>Bio</label>
-        <input type="text" id="bioInput" placeholder="Enter your bio">
-
-        <label>Address</label>
-        <textarea id="addressInput"
-                  placeholder="Enter your address"></textarea>
-
-        <label>Phone</label>
-        <input type="tel" id="phoneInput" placeholder="Enter phone number">
-
-        <label>Email</label>
-        <input type="email" id="emailInput" placeholder="Enter email">
-
-        <button onclick="saveProfile()">💾 Save Profile</button>
-
+    <div class="story">
+        <div class="story-circle">🌎</div>
+        <span>World</span>
     </div>
 
 </div>
+
+<!-- Categories -->
+<div class="categories">
+    <button class="active">All</button>
+    <button>Trending</button>
+    <button>India</button>
+    <button>Government</button>
+    <button>World</button>
+</div>
+
+<!-- LIVE NEWS WILL COME HERE -->
+<div id="newsBox"></div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        🏠
+        <span>Home</span>
+    </button>
+
+    <button onclick="document.getElementById('newsBox').scrollIntoView({behavior:'smooth'})">
+        📰
+        <span>News</span>
+    </button>
+
+    <button>
+        🔍
+        <span>Search</span>
+    </button>
+
+    <button>
+        🔔
+        <span>Alerts</span>
+    </button>
+
+    <button>
+        👤
+        <span>Profile</span>
+    </button>
+
+</nav>
 
 <script src="script.js"></script>
 
