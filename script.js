@@ -97,70 +97,63 @@ window.onload = function () {
 // ===============================
 
 async function loadNews() {
-    try {
-        const response = await fetch(
-            "https://politicsnewsbackend.onrender.com/api/news"
-        );
+  try {
+    const response = await fetch(
+      "https://politicsnewsbackend.onrender.com/api/news"
+    );
 
-        const articles = await response.json();
+    const articles = await response.json();
 
-        let newsBox = document.getElementById("newsBox");
+    const newsBox = document.getElementById("newsBox");
 
-        if (!newsBox) {
-            newsBox = document.createElement("div");
-            newsBox.id = "newsBox";
+    newsBox.innerHTML = `
+      <h2 style="margin:25px 0 15px;">
+        📰 Latest Politics News
+      </h2>
+    `;
 
-            document.body.appendChild(newsBox);
+    articles.forEach(article => {
+      const card = document.createElement("div");
+
+      card.style.border = "1px solid #ddd";
+      card.style.borderRadius = "12px";
+      card.style.padding = "15px";
+      card.style.marginBottom = "15px";
+      card.style.background = "#fff";
+
+      card.innerHTML = `
+        ${
+          article.urlToImage
+            ? `<img
+                src="${article.urlToImage}"
+                style="width:100%;max-height:220px;object-fit:cover;border-radius:10px;"
+                onerror="this.style.display='none';"
+              >`
+            : ""
         }
 
-        newsBox.innerHTML = `
-            <h2 style="margin:25px 0 15px;">
-                📰 Latest Politics News
-            </h2>
-        `;
+        <h3 style="margin:12px 0 8px;">
+          ${article.title || "No title"}
+        </h3>
 
-        articles.forEach(article => {
+        <p style="color:#555;">
+          ${article.description || "No description available."}
+        </p>
 
-            const card = document.createElement("div");
+        <a
+          href="${article.url}"
+          target="_blank"
+          style="display:inline-block;margin-top:10px;"
+        >
+          Read Full News →
+        </a>
+      `;
 
-            card.style.border = "1px solid #ddd";
-            card.style.borderRadius = "12px";
-            card.style.padding = "15px";
-            card.style.marginBottom = "15px";
-            card.style.background = "#fff";
+      newsBox.appendChild(card);
+    });
 
-            card.innerHTML = `
-                ${
-                    article.urlToImage
-                    ? `<img src="${article.urlToImage}"
-                         style="width:100%;max-height:220px;object-fit:cover;border-radius:10px;"
-                         onerror="this.style.display='none';">`
-                    : ""
-                }
-
-                <h3 style="margin:12px 0 8px;">
-                    ${article.title || "No title"}
-                </h3>
-
-                <p style="color:#555;">
-                    ${article.description || "No description available."}
-                </p>
-
-                <a href="${article.url}"
-                   target="_blank"
-                   style="display:inline-block;margin-top:10px;">
-                    Read Full News →
-                </a>
-            `;
-
-            newsBox.appendChild(card);
-        });
-
-    } catch (error) {
-        console.error("News loading error:", error);
-    }
+  } catch (error) {
+    console.error("News loading error:", error);
+  }
 }
-
-
-// Load news when page opens
 window.addEventListener("load", loadNews);
