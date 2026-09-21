@@ -1,0 +1,93 @@
+const editor = document.getElementById("editor");
+
+function openEditor() {
+    editor.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+
+// SAVE PROFILE
+
+function saveProfile() {
+
+    const name = document.getElementById("nameInput").value;
+    const bio = document.getElementById("bioInput").value;
+    const address = document.getElementById("addressInput").value;
+    const phone = document.getElementById("phoneInput").value;
+    const email = document.getElementById("emailInput").value;
+
+    document.getElementById("showName").textContent =
+        name || "Your Name";
+
+    document.getElementById("showBio").textContent =
+        bio || "Your Bio";
+
+    document.getElementById("showAddress").textContent =
+        address || "Your Address";
+
+    document.getElementById("showPhone").textContent =
+        phone || "Your Phone";
+
+    document.getElementById("showEmail").textContent =
+        email || "Your Email";
+
+
+    // Save text data
+    localStorage.setItem("name", name);
+    localStorage.setItem("bio", bio);
+    localStorage.setItem("address", address);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("email", email);
+
+    alert("Profile Saved Successfully! ✅");
+}
+
+
+// PROFILE PHOTO
+
+document.getElementById("photoInput").addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function () {
+
+        document.getElementById("profilePhoto").src = reader.result;
+
+        localStorage.setItem("profilePhoto", reader.result);
+    };
+
+    reader.readAsDataURL(file);
+});
+
+
+// LOAD SAVED PROFILE
+
+window.onload = function () {
+
+    document.getElementById("showName").textContent =
+        localStorage.getItem("name") || "Your Name";
+
+    document.getElementById("showBio").textContent =
+        localStorage.getItem("bio") || "Your Bio";
+
+    document.getElementById("showAddress").textContent =
+        localStorage.getItem("address") || "Your Address";
+
+    document.getElementById("showPhone").textContent =
+        localStorage.getItem("phone") || "Your Phone";
+
+    document.getElementById("showEmail").textContent =
+        localStorage.getItem("email") || "Your Email";
+
+
+    const savedPhoto = localStorage.getItem("profilePhoto");
+
+    if (savedPhoto) {
+        document.getElementById("profilePhoto").src = savedPhoto;
+    }
+};
