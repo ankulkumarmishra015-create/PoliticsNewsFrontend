@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="profile-card">
+
+        <img id="profilePhoto"
+             src="https://via.placeholder.com/150"
+             class="profile-photo">
+
+        <h1 id="showName">Your Name</h1>
+
+        <p id="showBio">Your Bio</p>
+
+        <div class="info">
+            <p>📍 <b>Address:</b> <span id="showAddress">Your Address</span></p>
+            <p>📱 <b>Phone:</b> <span id="showPhone">Your Phone</span></p>
+            <p>📧 <b>Email:</b> <span id="showEmail">Your Email</span></p>
+        </div>
+
+        <button onclick="openEditor()">✏️ Edit Profile</button>
+
+    </div>
+
+
+    <!-- EDIT PROFILE -->
+
+    <div class="editor" id="editor">
+
+        <h2>Edit Your Profile</h2>
+
+        <label>Profile Photo</label>
+        <input type="file" id="photoInput" accept="image/*">
+
+        <label>Name</label>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+
+        <label>Bio</label>
+        <input type="text" id="bioInput" placeholder="Enter your bio">
+
+        <label>Address</label>
+        <textarea id="addressInput"
+                  placeholder="Enter your address"></textarea>
+
+        <label>Phone</label>
+        <input type="tel" id="phoneInput" placeholder="Enter phone number">
+
+        <label>Email</label>
+        <input type="email" id="emailInput" placeholder="Enter email">
+
+        <button onclick="saveProfile()">💾 Save Profile</button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
