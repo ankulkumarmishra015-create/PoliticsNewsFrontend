@@ -201,7 +201,22 @@ function openSearch() {
 }
 
 function openAlerts() {
-  alert("🔔 No new alerts");
+  const newsBox = document.getElementById("newsBox");
+
+  if (newsBox) {
+    newsBox.innerHTML = `
+      <div style="margin:30px 15px;padding:25px;border-radius:15px;background:#1f1f1f;text-align:center;color:white;">
+        <div style="font-size:40px;">🔔</div>
+        <h2>No new alerts</h2>
+        <p style="color:#aaa;">You're all caught up!</p>
+      </div>
+    `;
+
+    newsBox.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
 }
 
 function openProfile() {
