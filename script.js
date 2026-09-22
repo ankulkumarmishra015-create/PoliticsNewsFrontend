@@ -165,3 +165,31 @@ async function loadNews() {
   }
 }
 window.addEventListener("load", loadNews);
+
+// ===============================
+// BOTTOM NAVIGATION
+// ===============================
+
+function openSearch() {
+  const newsBox = document.getElementById("newsBox");
+
+  if (newsBox) {
+    newsBox.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+}
+
+function openAlerts() {
+  alert("🔔 No new alerts");
+}
+
+function openProfile() {
+  const about = document.getElementById("aboutSection");
+
+  if (about) {
+    about.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+}

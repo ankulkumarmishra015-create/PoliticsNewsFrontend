@@ -101,33 +101,32 @@
 <!-- Bottom Navigation -->
 <nav class="bottom-nav">
 
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        🏠
-        <span>Home</span>
-    </button>
+  <button onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    🏠
+    <span>Home</span>
+  </button>
 
-    <button onclick="document.getElementById('newsBox').scrollIntoView({behavior:'smooth'})">
-        📰
-        <span>News</span>
-    </button>
+  <button onclick="document.getElementById('newsBox').scrollIntoView({behavior:'smooth'})">
+    📰
+    <span>News</span>
+  </button>
 
-    <button>
-        🔍
-        <span>Search</span>
-    </button>
+  <button onclick="openSearch()">
+    🔍
+    <span>Search</span>
+  </button>
 
-    <button>
-        🔔
-        <span>Alerts</span>
-    </button>
+  <button onclick="openAlerts()">
+    🔔
+    <span>Alerts</span>
+  </button>
 
-    <button>
-        👤
-        <span>Profile</span>
-    </button>
+  <button onclick="openProfile()">
+    👤
+    <span>Profile</span>
+  </button>
 
 </nav>
-
 <script src="script.js"></script>
 
 </body>
