@@ -244,9 +244,17 @@ function openProfile() {
 }
 
 function openStory(type) {
-  alert("📰 " + type + " News");
-}
+  const newsBox = document.getElementById("newsBox");
 
+  if (newsBox) {
+    newsBox.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+
+  loadNews();
+}
 
 // ===============================
 // PAGE BUTTONS
