@@ -77,29 +77,49 @@ if (photoInput) {
 
 window.onload = function () {
 
-    document.getElementById("showName").textContent =
-        localStorage.getItem("name") || "Your Name";
+  const setText = (id, value) => {
+    const element = document.getElementById(id);
 
-    document.getElementById("showBio").textContent =
-        localStorage.getItem("bio") || "Your Bio";
-
-    document.getElementById("showAddress").textContent =
-        localStorage.getItem("address") || "Your Address";
-
-    document.getElementById("showPhone").textContent =
-        localStorage.getItem("phone") || "Your Phone";
-
-    document.getElementById("showEmail").textContent =
-        localStorage.getItem("email") || "Your Email";
-
-
-    const savedPhoto = localStorage.getItem("profilePhoto");
-
-    if (savedPhoto) {
-        document.getElementById("profilePhoto").src = savedPhoto;
+    if (element) {
+      element.textContent = value;
     }
-};
+  };
 
+  setText(
+    "showName",
+    localStorage.getItem("name") || "Your Name"
+  );
+
+  setText(
+    "showBio",
+    localStorage.getItem("bio") || "Your Bio"
+  );
+
+  setText(
+    "showAddress",
+    localStorage.getItem("address") || "Your Address"
+  );
+
+  setText(
+    "showPhone",
+    localStorage.getItem("phone") || "Your Phone"
+  );
+
+  setText(
+    "showEmail",
+    localStorage.getItem("email") || "Your Email"
+  );
+
+  const savedPhoto = localStorage.getItem("profilePhoto");
+
+  if (savedPhoto) {
+    const profilePhoto = document.getElementById("profilePhoto");
+
+    if (profilePhoto) {
+      profilePhoto.src = savedPhoto;
+    }
+  }
+};
 // ===============================
 // LIVE POLITICS NEWS
 // ===============================
@@ -193,3 +213,131 @@ function openProfile() {
     });
   }
 }
+// ===============================
+// ALL BUTTONS / ICONS
+// ===============================
+
+function openSearch() {
+  const newsBox = document.getElementById("newsBox");
+
+  if (newsBox) {
+    newsBox.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
+function openAlerts() {
+  alert("🔔 No new alerts");
+}
+
+function openProfile() {
+  const profile = document.getElementById("aboutSection");
+
+  if (profile) {
+    profile.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
+function openStory(type) {
+  alert("📰 " + type + " News");
+}
+
+
+// ===============================
+// PAGE BUTTONS
+// ===============================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  // TOP SEARCH + ALERT ICONS
+  const topButtons = document.querySelectorAll(".top-icons button");
+
+  if (topButtons.length >= 1) {
+    topButtons[0].onclick = function () {
+      openSearch();
+    };
+  }
+
+  if (topButtons.length >= 2) {
+    topButtons[1].onclick = function () {
+      openAlerts();
+    };
+  }
+
+
+  // ===============================
+  // STORIES
+  // ===============================
+
+  const stories = document.querySelectorAll(".story");
+
+  if (stories.length >= 5) {
+
+    // India
+    stories[1].onclick = function () {
+      openStory("India");
+    };
+
+    // Parliament
+    stories[2].onclick = function () {
+      openStory("Parliament");
+    };
+
+    // Live
+    stories[3].onclick = function () {
+      openStory("Live");
+    };
+
+    // World
+    stories[4].onclick = function () {
+      openStory("World");
+    };
+  }
+
+
+  // ===============================
+  // CATEGORIES
+  // ===============================
+
+  const categories = document.querySelectorAll(".categories button");
+
+  categories.forEach(function (button) {
+
+    button.onclick = function () {
+
+      categories.forEach(function (btn) {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      const category = button.textContent.trim();
+
+      if (category === "All") {
+        openStory("All");
+      }
+
+      if (category === "Trending") {
+        openStory("Trending");
+      }
+
+      if (category === "India") {
+        openStory("India");
+      }
+
+      if (category === "Government") {
+        openStory("Government");
+      }
+
+      if (category === "World") {
+        openStory("World");
+      }
+    };
+  });
+
+});
