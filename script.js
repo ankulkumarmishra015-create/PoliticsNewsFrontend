@@ -127,7 +127,7 @@ window.onload = function () {
 async function loadNews() {
   try {
     const response = await fetch(
-      "https://politicsnewsbackend.onrender.com/api/news"
+    "https://politicsnewsbackend-1.onrender.com/api/news"
     );
 
     const articles = await response.json();
