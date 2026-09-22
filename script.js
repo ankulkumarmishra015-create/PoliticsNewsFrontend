@@ -124,10 +124,10 @@ window.onload = function () {
 // LIVE POLITICS NEWS
 // ===============================
 
-async function loadNews() {
+async function loadNews(category = "all") {
   try {
     const response = await fetch(
-    "https://politicsnewsbackend-1.onrender.com/api/news"
+    `https://politicsnewsbackend-1.onrender.com/api/news?category=${encodeURIComponent(category)}`
     );
 
     const articles = await response.json();
@@ -243,17 +243,29 @@ function openProfile() {
   }
 }
 
-function openStory(type) {
-  const newsBox = document.getElementById("newsBox");
+async function openStory(type) {
+    const newsBox = document.getElementById("newsBox");
 
-  if (newsBox) {
-    newsBox.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
+    if (newsBox) {
+        newsBox.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
 
-  loadNews();
+    const categoryMap = {
+        "All": "all",
+        "Trending": "trending",
+        "India": "india",
+        "Government": "government",
+        "World": "world",
+        "Parliament": "government",
+        "Live": "trending"
+    };
+
+    const category = categoryMap[type] || "all";
+
+    await loadNews(category);
 }
 
 // ===============================
@@ -326,25 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const category = button.textContent.trim();
 
-      if (category === "All") {
-        openStory("All");
-      }
-
-      if (category === "Trending") {
-        openStory("Trending");
-      }
-
-      if (category === "India") {
-        openStory("India");
-      }
-
-      if (category === "Government") {
-        openStory("Government");
-      }
-
-      if (category === "World") {
-        openStory("World");
-      }
+      loadNews(category.toLowerCase());
     };
   });
 
